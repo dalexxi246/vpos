@@ -1,14 +1,17 @@
 import SwiftUI
-import Shared
 
 struct ContentView: View {
     var body: some View {
-        AddTransactionScreen()
+        NavigationTemplateView {
+            NavigationLink {
+                AddTransactionScreenView()
+            } label: {
+                Text("Add Transaction")
+            }
+        }.navigationTitle(Text("Transactions"))
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }

@@ -18,7 +18,5 @@ struct CurrecyInput: View {
 }
 
 #Preview {
-    @State var value: String = "329.09"
-    @State var label: String = "Valor"
-    CurrecyInput(value: $value, label: label)
+    CurrecyInput(value: .constant("329.00"), label: "label")
 }

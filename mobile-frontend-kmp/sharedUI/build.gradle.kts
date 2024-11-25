@@ -20,7 +20,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "Shared"
+            baseName = "SharedUI"
             isStatic = true
         }
     }
@@ -29,13 +29,15 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
+//            implementation(libs.kotlin.coroutines.core)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(projects.vpos.domain)
         }
     }
 }
 
 android {
-    namespace = "com.wh2.vpos.shared"
+    namespace = "com.wh2.vpos.domain"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
