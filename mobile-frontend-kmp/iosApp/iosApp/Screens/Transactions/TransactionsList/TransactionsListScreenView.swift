@@ -13,6 +13,12 @@ struct TransactionsListScreenView: View {
         NavigationTemplateView {
             Text("Transactions")
                 .padding()
+            List {
+                ForEach(1..<100) { index in
+                    Text("Elemento \(index)")
+                }
+            }
+            
         }
         .navigationTitle("Transactions")
     }

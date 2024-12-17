@@ -31,6 +31,7 @@ struct HomeScreen: View {
                     Label("Budgets", systemImage: "envelope")
                 }
         }
+        .translucentBackground()
     }
 }
 
