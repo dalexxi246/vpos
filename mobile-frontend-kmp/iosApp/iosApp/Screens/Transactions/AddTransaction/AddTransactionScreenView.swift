@@ -30,15 +30,13 @@ struct AddTransactionScreenView: View {
         .navigationTitle(Text("Agregar Transacción"))
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                Button(action: { submitAction() }, label: {
+                Button(action: submitAction, label: {
                     Text("Done")
                 })
             }
         }
-        
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
-
 }
 
 
