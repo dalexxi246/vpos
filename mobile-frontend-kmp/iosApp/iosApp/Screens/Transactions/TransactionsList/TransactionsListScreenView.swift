@@ -11,14 +11,11 @@ import SwiftUI
 struct TransactionsListScreenView: View {
     var body: some View {
         NavigationTemplateView {
-            Text("Transactions")
-                .padding()
             List {
-                ForEach(1..<100) { index in
+                ForEach(1..<20) { index in
                     Text("Elemento \(index)")
                 }
             }
-            
         }
         .navigationTitle("Transactions")
     }

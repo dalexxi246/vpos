@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddTransactionScreenView: View {
     let valueLabel: String = "Valor"
-    @State var value: String = ""
+    @State var amount: Decimal = 0
     @State var description: String = ""
     @State var categorySelection: Category?
     
@@ -19,9 +19,11 @@ struct AddTransactionScreenView: View {
     }
     var body: some View {
         NavigationTemplateView {
+            VStack {
+                CurrencyTextFieldView(amount: $amount)
+            }
             Form {
                 Section(header: Text("Datos de la transacción")) {
-                    CurrecyInput(value: $value, label: valueLabel)
                     TextField("Descripción", text: $description)
     //                Picker("Categoria", selection: Binding<SelectionValue>)
                 }
@@ -42,5 +44,5 @@ struct AddTransactionScreenView: View {
 
 
 #Preview {
-    AddTransactionScreenView()
+    AddTransactionScreenView(amount: 94)
 }
