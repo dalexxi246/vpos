@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">VPOS</string>
+
+    <string name="screen_title_home">Home</string>
+    <string name="screen_title_categories">Categories</string>
+    <string name="screen_title_transaction">Transactions</string>
+    <string name="screen_title_accounts">Accounts</string>
+    <string name="screen_title_budget">Budget</string>
+
+    <string name="content_description_navigation_side_panel">Open side options</string>
 </resources>
