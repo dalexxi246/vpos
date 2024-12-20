@@ -1,4 +1,4 @@
-package com.wh2.vpos.app.ui.state
+package com.wh2.vpos.app.navigation
 
 import android.content.Context
 import androidx.compose.runtime.Composable

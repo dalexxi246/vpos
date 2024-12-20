@@ -1,4 +1,4 @@
-package com.wh2.vpos.app.ui.state
+package com.wh2.vpos.app.navigation.bottombar
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
