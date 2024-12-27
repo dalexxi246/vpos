@@ -34,6 +34,11 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(project.dependencies.platform("io.insert-koin:koin-bom:4.1.0"))
+            implementation(libs.koin.bom)
+            implementation(libs.koin.core)
+            // Koin Annotations
+            api("io.insert-koin:koin-annotations:$koin_annotations_version")
             implementation(projects.vpos.shared)
         }
     }

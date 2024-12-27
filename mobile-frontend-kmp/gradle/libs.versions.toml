@@ -13,6 +13,7 @@ androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
 compose-multiplatform = "1.7.0"
 junit = "4.13.2"
+koin-bom = "4.1.0"
 kotlin = "2.1.0"
 kotlinx-coroutines-core = "1.9.0"
 ksp = "2.1.0-1.0.29"
@@ -38,6 +39,8 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-multiplatform" }
 compose-materialIcons = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "compose-multiplatform" }
 logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-core = { module = "io.insert-koin:koin-core" }
 ktor-server-core = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-server-tests = { module = "io.ktor:ktor-server-tests-jvm", version.ref = "ktor" }
