@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -69,5 +70,10 @@ android {
 dependencies {
     implementation(libs.androidx.navigation.compose)
     debugImplementation(compose.uiTooling)
-}
 
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.android)
+
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit4)
+}

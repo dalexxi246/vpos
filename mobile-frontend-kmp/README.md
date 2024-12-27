@@ -17,3 +17,12 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Server.
 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+Pending tasks:
+
+[] Create view models for Android module.
+[] Create Use cases for Android Module.
+[] Implement SQLDelight
+[] Extract business logic to common modules (domain)
+[] Extract MVI logic to common modules (sharedUI)
+[] Structure shareable ViewModelDelegate with base structure for handling MVI architecture. 

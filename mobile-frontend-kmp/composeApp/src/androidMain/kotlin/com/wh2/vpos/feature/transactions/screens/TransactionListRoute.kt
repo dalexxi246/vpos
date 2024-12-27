@@ -22,7 +22,10 @@ import com.wh2.vpos.core.ui.designsystem.AppIcons
 import com.wh2.vpos.core.ui.theme.AppTheme
 
 @Composable
-fun TransactionListRoute(modifier: Modifier = Modifier, addTransaction: () -> Unit = {}) {
+fun TransactionListRoute(
+    modifier: Modifier = Modifier,
+    addTransaction: () -> Unit = {}
+) {
     TransactionsListScreen(addTransaction = addTransaction)
 }
 
