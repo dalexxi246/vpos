@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.update
 
 class AddTransactionViewModelDelegate: AddTransactionContract.ViewModel {
 
-    override val mutableState: MutableStateFlow<State> = MutableStateFlow(State())
+    private val mutableState: MutableStateFlow<State> = MutableStateFlow(State())
 
     override val state: StateFlow<State>
         get() = mutableState

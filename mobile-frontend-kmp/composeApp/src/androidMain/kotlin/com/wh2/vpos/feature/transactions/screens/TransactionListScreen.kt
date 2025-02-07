@@ -2,7 +2,6 @@
 
 package com.wh2.vpos.feature.transactions.screens
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.wh2.vpos.core.ui.designsystem.AppIcons
@@ -34,12 +32,8 @@ import com.wh2.vpos.model.TransactionDate
 fun TransactionsListScreen(
     transactions: List<Transaction>,
     addTransaction: () -> Unit,
-    getLatestTransactions: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LaunchedEffect(Unit) {
-        getLatestTransactions()
-    }
 
     Scaffold(
         modifier = Modifier
@@ -100,7 +94,7 @@ private fun TransactionItem(transaction: Transaction) {
     ListItem(
         headlineContent = { Text(transaction.category.name) },
         supportingContent = { Text(transaction.description) },
-        trailingContent = { Text("${transaction.amount.stringValue}") },
+        trailingContent = { Text(transaction.amount.stringValue) },
         leadingContent = {
             ImageVectorIcon(AppIcons.Outlined.Transfers).CreateIcon(
                 // TODO: Change icon based on category (create extension function to get ImageVectorIcon)
@@ -117,9 +111,9 @@ private fun PreviewTransactionsListScreen() {
         repeat(100) {
             add(
                 Transaction(
-                    id = "mei",
+                    id = "id-$it",
                     amount = CurrencyValue(stringValue = "$ 99,00"),
-                    description = "pertinacia",
+                    description = "pertinacia $it",
                     category = Category(id = "ipsum", name = "Rigoberto Armstrong"),
                     date = TransactionDate(value = "dui"),
                     account = Account(id = "omittantur")
@@ -130,9 +124,8 @@ private fun PreviewTransactionsListScreen() {
 
     AppTheme {
         TransactionsListScreen(
-            addTransaction = { },
-            getLatestTransactions = { },
-            transactions = mockTransactions
+            transactions = mockTransactions,
+            addTransaction = { }
         )
     }
 }

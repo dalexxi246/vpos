@@ -7,57 +7,45 @@ import com.wh2.vpos.model.Transaction
 import com.wh2.vpos.model.TransactionDate
 import com.wh2.vpos.views.TransactionsListContract
 import com.wh2.vpos.views.TransactionsListContract.State
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
-class TransactionsListViewModelDelegate : TransactionsListContract.ViewModel {
+class TransactionsListViewModelDelegate(
+    coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
+) : TransactionsListContract.ViewModel {
 
-    override val mutableState: MutableStateFlow<State> =
-        MutableStateFlow(State(transactions = emptyList()))
-
-    override val state: StateFlow<State>
-        get() = mutableState
+    override val state: StateFlow<State> = mockTransactions.map {
+        State(transactions = it)
+    }.stateIn(
+        scope = coroutineScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = State()
+    )
 
     override fun processAction(input: TransactionsListContract.Input) {
-        when (input) {
-            is TransactionsListContract.Input.GetLatestTransactions -> {
-                mutableState.update {
-                    State(
-                        transactions = mockTransactions
-                    )
-                }
-                println("Getting latest transactions")
-            }
-        }
+        // TODO Pending implementation of inputs
     }
 }
 
-private val mockTransactions = listOf(
-    Transaction(
-        id = "mei",
-        amount = CurrencyValue(stringValue = "ei"),
-        description = "pertinacia",
-        category = Category(id = "ipsum", name = "Rigoberto Armstrong"),
-        date = TransactionDate(value = "dui"),
-        account = Account(id = "omittantur")
-    ),
-
-    Transaction(
-        id = "mei",
-        amount = CurrencyValue(stringValue = "ei"),
-        description = "pertinacia",
-        category = Category(id = "ipsum", name = "Rigoberto Armstrong"),
-        date = TransactionDate(value = "dui"),
-        account = Account(id = "omittantur")
-    ),
-
-    Transaction(
-        id = "mei",
-        amount = CurrencyValue(stringValue = "ei"),
-        description = "pertinacia",
-        category = Category(id = "ipsum", name = "Rigoberto Armstrong"),
-        date = TransactionDate(value = "dui"),
-        account = Account(id = "omittantur")
-    ),
-)
+private val mockTransactions = flow {
+    emit(buildList {
+        repeat(100) {
+            add(
+                Transaction(
+                    id = "id-$it",
+                    amount = CurrencyValue(stringValue = "$ 99,00"),
+                    description = "pertinacia $it",
+                    category = Category(id = "ipsum", name = "Rigoberto Armstrong"),
+                    date = TransactionDate(value = "dui"),
+                    account = Account(id = "omittantur")
+                )
+            )
+        }
+    })
+}

@@ -9,9 +9,7 @@ object TransactionsListContract {
         val transactions: List<Transaction> = emptyList()
     )
 
-    sealed interface Input {
-        data object GetLatestTransactions: Input
-    }
+    sealed interface Input
 
     interface ViewModel: ViewModelDelegate<State, Input>
 }
