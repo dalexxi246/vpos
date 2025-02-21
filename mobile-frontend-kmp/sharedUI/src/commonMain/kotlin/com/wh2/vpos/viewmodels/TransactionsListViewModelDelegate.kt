@@ -16,14 +16,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class TransactionsListViewModelDelegate(
-    coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
-) : TransactionsListContract.ViewModel {
+class TransactionsListViewModelDelegate : TransactionsListContract.ViewModel {
+
+    private val scope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
 
     override val state: StateFlow<State> = mockTransactions.map {
         State(transactions = it)
     }.stateIn(
-        scope = coroutineScope,
+        scope = scope,
         started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
         initialValue = State()
     )

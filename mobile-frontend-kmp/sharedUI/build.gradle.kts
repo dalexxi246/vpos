@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.skie)
 }
 
 kotlin {
@@ -30,6 +31,7 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.skie.annotations)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
             implementation(projects.vpos.domain)

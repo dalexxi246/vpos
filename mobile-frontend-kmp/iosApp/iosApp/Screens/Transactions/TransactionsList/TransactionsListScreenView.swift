@@ -7,8 +7,14 @@
 //
 
 import SwiftUI
+import Shared
+import SharedUI
 
 struct TransactionsListScreenView: View {
+    
+    @StateObject
+    private var viewModel = TransactionsListViewModel()
+    
     var body: some View {
         NavigationTemplateView {
             List {
@@ -18,6 +24,23 @@ struct TransactionsListScreenView: View {
             }
         }
         .navigationTitle("Transactions")
+        .task {
+            await viewModel.fetchTransactions()
+        }
+    }
+}
+
+class TransactionsListViewModel: ObservableObject {
+    private let delegate: TransactionsListViewModelDelegate = TransactionsListViewModelDelegate()
+    
+    @Published var state: TransactionsListContract.State?
+    
+    @MainActor
+    func fetchTransactions() async {
+        for await state in delegate.state {
+            self.state = state
+            print(state)
+        }
     }
 }
 

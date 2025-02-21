@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var showAddTransactionSheet: Bool = false
     @State private var showCategoriesSheet: Bool = false
-    
+
     var body: some View {
         HomeScreen()
 //        NavigationTemplateView {
