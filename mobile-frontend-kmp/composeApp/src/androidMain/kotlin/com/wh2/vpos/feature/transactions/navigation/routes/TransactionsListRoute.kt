@@ -9,7 +9,7 @@ import com.wh2.vpos.views.TransactionsListContract
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun TransactionListRoute(
+fun TransactionsListRoute(
     addTransaction: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -18,8 +18,8 @@ fun TransactionListRoute(
     val state = viewModel.state.collectAsStateWithLifecycle(TransactionsListContract.State())
 
     TransactionsListScreen(
-        transactions = state.value.transactions,
-        addTransaction = addTransaction,
-        modifier = modifier
+        state = TODO(),
+        transactions = TODO(),
+        addTransaction = TODO()
     )
 }

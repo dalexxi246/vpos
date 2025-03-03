@@ -25,6 +25,7 @@ object AppIcons {
         val ToggleNavigationDrawer = Icons.Filled.Menu
         val BackNavigation = Icons.AutoMirrored.Filled.ArrowBack
         val AddNewItem = Icons.Filled.Add
+        val FilterList = Icons.Filled.FilterList
     }
 
     object Outlined {
@@ -36,6 +37,7 @@ object AppIcons {
         val ToggleNavigationDrawer = Icons.Outlined.Menu
         val BackNavigation = Icons.AutoMirrored.Outlined.ArrowBack
         val AddNewItem = Icons.Outlined.Add
+        val FilterList = Icons.Outlined.FilterList
     }
 }
 
