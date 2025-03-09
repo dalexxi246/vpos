@@ -47,6 +47,7 @@ kotlin {
             implementation(projects.vpos.shared)
             implementation(projects.vpos.sharedUI)
             implementation(projects.vpos.domain)
+            implementation(projects.vpos.data)
         }
     }
 }

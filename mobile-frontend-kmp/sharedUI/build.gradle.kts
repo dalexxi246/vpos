@@ -10,7 +10,6 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -40,7 +39,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.wh2.vpos.domain"
+    namespace = "com.wh2.vpos.shared.ui"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

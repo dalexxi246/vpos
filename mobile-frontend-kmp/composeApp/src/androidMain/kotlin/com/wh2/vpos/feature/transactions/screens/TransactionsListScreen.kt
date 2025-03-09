@@ -1,5 +1,6 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class,
-    ExperimentalFoundationApi::class
+@file:OptIn(
+    ExperimentalMaterial3Api::class,
+    ExperimentalFoundationApi::class,
 )
 
 package com.wh2.vpos.feature.transactions.screens
@@ -38,18 +39,17 @@ import com.wh2.vpos.core.ui.designsystem.CreateIcon
 import com.wh2.vpos.core.ui.designsystem.ImageVectorIcon
 import com.wh2.vpos.core.ui.theme.AppTheme
 import com.wh2.vpos.model.TransactionsListSection
-import com.wh2.vpos.model.TransactionsListState
 import com.wh2.vpos.model.Account
-import com.wh2.vpos.model.Category
+import com.wh2.vpos.model.TransactionCategory
 import com.wh2.vpos.model.CurrencyValue
 import com.wh2.vpos.model.Transaction
 import com.wh2.vpos.model.TransactionDate
 import com.wh2.vpos.model.TransactionFilter
+import com.wh2.vpos.views.TransactionsListContract
 
 @Composable
 fun TransactionsListScreen(
-    state: TransactionsListState,
-    transactions: List<Transaction>,
+    state: TransactionsListContract.State,
     addTransaction: () -> Unit,
     modifier: Modifier = Modifier,
     onFilterSelected: (TransactionFilter) -> Unit = {},
@@ -66,7 +66,7 @@ fun TransactionsListScreen(
             FloatingActionButton(onClick = addTransaction) {
                 Icon(
                     imageVector = AppIcons.Filled.AddNewItem,
-                    contentDescription = "add new transaction"
+                    contentDescription = "add new transaction",
                 )
             }
         },
@@ -74,13 +74,13 @@ fun TransactionsListScreen(
         content = {
             Column(modifier = Modifier.padding(it)) {
                 TransactionFilters(
-                    filters = transactionFilters
+                    filters = transactionFilters,
                 )
                 TransactionsList(
-                    state = state.sections
+                    state = state.sections,
                 )
             }
-        }
+        },
     )
 }
 
@@ -93,28 +93,28 @@ fun TransactionFilters(
         LazyRow(
             modifier = Modifier.padding(vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(end = 8.dp)
+            contentPadding = PaddingValues(end = 8.dp),
         ) {
             item {
                 IconButton(
                     onClick = {},
-                    modifier = Modifier.wrapContentSize()
+                    modifier = Modifier.wrapContentSize(),
                 ) {
                     Icon(
                         imageVector = AppIcons.Filled.FilterList,
-                        contentDescription = stringResource(R.string.more_transaction_filters)
+                        contentDescription = stringResource(R.string.more_transaction_filters),
                     )
                 }
             }
             items(
                 items = filters,
-                key = { it.id }
+                key = { it.id },
             ) {
                 FilterChip(
                     selected = it.selected,
                     onClick = { onFilterSelected.invoke(it) },
                     label = { Text(it.name) },
-                    shape = CircleShape
+                    shape = CircleShape,
                 )
             }
         }
@@ -126,7 +126,7 @@ private fun TransactionsScreenAppBar(onNavigationButtonClicked: () -> Unit = { }
     CenterAlignedTopAppBar(
         title = { Text(text = "Transacciones") },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
         navigationIcon = {
             IconButton(onClick = onNavigationButtonClicked) {
@@ -135,7 +135,7 @@ private fun TransactionsScreenAppBar(onNavigationButtonClicked: () -> Unit = { }
                     contentDescription = stringResource(id = R.string.content_description_navigation_side_panel),
                 )
             }
-        }
+        },
     )
 }
 
@@ -165,9 +165,9 @@ private fun TransactionItem(transaction: Transaction) {
         leadingContent = {
             ImageVectorIcon(AppIcons.Outlined.Transfers).CreateIcon(
                 // TODO: Change icon based on category (create extension function to get ImageVectorIcon)
-                contentDescription = ""
+                contentDescription = "",
             )
-        }
+        },
     )
 }
 
@@ -175,36 +175,60 @@ private fun TransactionItem(transaction: Transaction) {
 @Composable
 private fun PreviewTransactionsListScreen() {
     val mockTransactions = buildList {
-        repeat(100) {
-            add(
-                Transaction(
-                    id = "id-$it",
-                    amount = CurrencyValue(stringValue = "$ 99,00"),
-                    description = "pertinacia $it",
-                    category = Category(id = "ipsum", name = "Rigoberto Armstrong"),
-                    date = TransactionDate(value = "dui"),
-                    account = Account(id = "omittantur")
-                )
-            )
-        }
+        add(
+            TransactionsListSection(
+                date = "Febrero 7",
+                transactions = buildList {
+                    repeat(10) {
+                        add(
+                            Transaction(
+                                id = "id-$it",
+                                amount = CurrencyValue(stringValue = "$ 99,00"),
+                                description = "pertinacia $it",
+                                category = TransactionCategory(
+                                    id = "ipsum",
+                                    name = "Rigoberto Armstrong",
+                                ),
+                                date = TransactionDate(value = "dui"),
+                                account = Account(id = "omittantur"),
+                            ),
+                        )
+                    }
+                },
+            ),
+        )
+        add(
+            TransactionsListSection(
+                date = "Febrero 10",
+                transactions = buildList {
+                    repeat(50) {
+                        add(
+                            Transaction(
+                                id = "id-$it",
+                                amount = CurrencyValue(stringValue = "$ 99,00"),
+                                description = "pertinacia $it",
+                                category = TransactionCategory(
+                                    id = "ipsum",
+                                    name = "Rigoberto Armstrong",
+                                ),
+                                date = TransactionDate(value = "dui"),
+                                account = Account(id = "omittantur"),
+                            ),
+                        )
+                    }
+                },
+            ),
+        )
     }
-    val mockFilters = buildList {
-        repeat(7) {
-            add(
-                TransactionFilter(
-                    id = "$it",
-                    name = "Filtro $it",
-                    selected = it == 2
-                )
-            )
-        }
-    }
+    val mockFilters = emptyList<TransactionFilter>()
 
     AppTheme {
         TransactionsListScreen(
-            state = TransactionsListState(sections = listOf()),
-            transactions = mockTransactions,
-            addTransaction = { }
+            state = TransactionsListContract.State(
+                sections = mockTransactions,
+                filters = mockFilters,
+            ),
+            addTransaction = { },
         )
     }
 }

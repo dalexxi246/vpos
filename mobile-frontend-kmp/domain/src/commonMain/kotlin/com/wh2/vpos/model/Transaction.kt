@@ -4,7 +4,7 @@ data class Transaction(
     val id: String,
     val amount: CurrencyValue,
     val description: String,
-    val category: Category,
+    val category: TransactionCategory,
     val date: TransactionDate,
     val account: Account
 )

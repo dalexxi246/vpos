@@ -2,11 +2,14 @@ package com.wh2.vpos.views
 
 import com.wh2.vpos.contracts.ViewModelDelegate
 import com.wh2.vpos.model.Transaction
+import com.wh2.vpos.model.TransactionFilter
+import com.wh2.vpos.model.TransactionsListSection
 
 object TransactionsListContract {
 
     data class State(
-        val transactions: List<Transaction> = emptyList()
+        val sections: List<TransactionsListSection> = emptyList(),
+        val filters: List<TransactionFilter> = emptyList()
     )
 
     sealed interface Input

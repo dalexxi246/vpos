@@ -14,10 +14,14 @@ application {
 
 dependencies {
     implementation(libs.kotlinx.datetime)
-    implementation(projects.shared)
     implementation(libs.logback)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
+
+    implementation(projects.shared)
+    implementation(projects.domain)
+
 //    testImplementation(libs.ktor.server.tests)
     testImplementation(libs.kotlin.test.junit)
+
 }

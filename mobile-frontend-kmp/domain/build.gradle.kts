@@ -9,7 +9,6 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -30,10 +29,8 @@ kotlin {
     
     sourceSets {
         commonMain.dependencies {
-//            implementation(libs.kotlin.coroutines.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
-
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
         }
