@@ -10,18 +10,17 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 
 class TransactionsListViewModelDelegate(
-    getTransactions: GetTransactions
+    getTransactions: GetTransactions,
+    scope: CoroutineScope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
 ) : TransactionsListContract.ViewModel {
-
-    private val scope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
 
     override val state: StateFlow<State> = combine(
         getTransactions.invoke(),
-        emptyFlow<List<TransactionFilter>>(),
+        flowOf<List<TransactionFilter>>(emptyList()),
     ) { sections, filters -> State(sections, filters) }.stateIn(
         scope = scope,
         started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
