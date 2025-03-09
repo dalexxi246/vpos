@@ -1,9 +1,8 @@
-package com.wh2.vpos.viewmodels
+package com.wh2.vpos.shared.ui.viewmodels
 
-import com.wh2.vpos.model.TransactionFilter
 import com.wh2.vpos.usecases.GetTransactions
-import com.wh2.vpos.views.TransactionsListContract
-import com.wh2.vpos.views.TransactionsListContract.State
+import com.wh2.vpos.shared.ui.views.TransactionsListContract
+import com.wh2.vpos.shared.ui.views.TransactionsListContract.State
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -20,8 +19,9 @@ class TransactionsListViewModelDelegate(
 
     override val state: StateFlow<State> = combine(
         getTransactions.invoke(),
-        flowOf<List<TransactionFilter>>(emptyList()),
-    ) { sections, filters -> State(sections, filters) }.stateIn(
+        flowOf(emptyList()),
+        ::State,
+    ).stateIn(
         scope = scope,
         started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
         initialValue = State(),

@@ -1,6 +1,6 @@
-package com.wh2.vpos.views
+package com.wh2.vpos.shared.ui.views
 
-import com.wh2.vpos.contracts.ViewModelDelegate
+import com.wh2.vpos.shared.ui.contracts.ViewModelDelegate
 import com.wh2.vpos.model.TransactionFilter
 import com.wh2.vpos.model.TransactionsListSection
 

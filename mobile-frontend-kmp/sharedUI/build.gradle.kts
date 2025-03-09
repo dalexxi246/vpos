@@ -34,6 +34,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
             implementation(projects.vpos.domain)
+            implementation(projects.vpos.data)
         }
     }
 }

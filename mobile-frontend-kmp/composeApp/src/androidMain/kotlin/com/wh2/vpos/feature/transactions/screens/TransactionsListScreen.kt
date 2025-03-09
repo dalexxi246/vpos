@@ -45,7 +45,7 @@ import com.wh2.vpos.model.CurrencyValue
 import com.wh2.vpos.model.Transaction
 import com.wh2.vpos.model.TransactionDate
 import com.wh2.vpos.model.TransactionFilter
-import com.wh2.vpos.views.TransactionsListContract
+import com.wh2.vpos.shared.ui.views.TransactionsListContract
 
 @Composable
 fun TransactionsListScreen(

@@ -1,4 +1,4 @@
-package com.wh2.vpos.contracts
+package com.wh2.vpos.shared.ui.contracts
 
 import kotlinx.coroutines.flow.StateFlow
 

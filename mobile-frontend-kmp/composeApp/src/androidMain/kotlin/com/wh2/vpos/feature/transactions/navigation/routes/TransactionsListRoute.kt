@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.wh2.vpos.feature.transactions.screens.TransactionsListScreen
 import com.wh2.vpos.feature.transactions.viewmodels.TransactionsListViewModel
-import com.wh2.vpos.views.TransactionsListContract
+import com.wh2.vpos.shared.ui.views.TransactionsListContract
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable

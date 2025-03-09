@@ -3,8 +3,8 @@ package com.wh2.vpos.feature.transactions.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wh2.vpos.usecases.GetTransactions
-import com.wh2.vpos.viewmodels.TransactionsListViewModelDelegate
-import com.wh2.vpos.views.TransactionsListContract
+import com.wh2.vpos.shared.ui.viewmodels.TransactionsListViewModelDelegate
+import com.wh2.vpos.shared.ui.views.TransactionsListContract
 import kotlinx.coroutines.flow.StateFlow
 
 class TransactionsListViewModel(

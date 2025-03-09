@@ -31,7 +31,7 @@ struct TransactionsListScreenView: View {
 }
 
 class TransactionsListViewModel: ObservableObject {
-    private let delegate: TransactionsListViewModelDelegate = TransactionsListViewModelDelegate()
+    private let delegate: TransactionsListViewModelDelegate = KoinDependencies().transactionsListViewModelDelegate
     
     @Published var state: TransactionsListContract.State?
     

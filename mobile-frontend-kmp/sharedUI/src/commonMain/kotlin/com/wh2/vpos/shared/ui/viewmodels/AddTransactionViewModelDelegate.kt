@@ -1,8 +1,8 @@
-package com.wh2.vpos.viewmodels
+package com.wh2.vpos.shared.ui.viewmodels
 
-import com.wh2.vpos.views.AddTransactionContract
-import com.wh2.vpos.views.AddTransactionContract.Input
-import com.wh2.vpos.views.AddTransactionContract.State
+import com.wh2.vpos.shared.ui.views.AddTransactionContract
+import com.wh2.vpos.shared.ui.views.AddTransactionContract.Input
+import com.wh2.vpos.shared.ui.views.AddTransactionContract.State
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
