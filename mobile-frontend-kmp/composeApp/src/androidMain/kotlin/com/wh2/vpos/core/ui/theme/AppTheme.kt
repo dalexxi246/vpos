@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.wh2.budgetapp.ui.theme.Typography
 
 
 private val LightColors = lightColorScheme(
@@ -112,11 +113,8 @@ fun AppTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-//        typography = Typography,
+        typography = Typography,
         content = content,
-        shapes = Shapes
-//        shapes = MaterialTheme.shapes.copy(
-//            large = CutCornerShape(percent = 100)
-//        ),
+        shapes = Shapes,
     )
 }

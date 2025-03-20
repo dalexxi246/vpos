@@ -26,6 +26,7 @@ object AppIcons {
         val BackNavigation = Icons.AutoMirrored.Filled.ArrowBack
         val AddNewItem = Icons.Filled.Add
         val FilterList = Icons.Filled.FilterList
+        val Search = Icons.Filled.Search
     }
 
     object Outlined {
@@ -38,6 +39,7 @@ object AppIcons {
         val BackNavigation = Icons.AutoMirrored.Outlined.ArrowBack
         val AddNewItem = Icons.Outlined.Add
         val FilterList = Icons.Outlined.FilterList
+        val Search = Icons.Outlined.Search
     }
 }
 

@@ -2,6 +2,8 @@ package com.wh2.vpos.app.navigation
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -26,8 +28,8 @@ fun AppNavHost(
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        enterTransition = { EnterTransition.None },
-        exitTransition = { ExitTransition.None },
+        enterTransition = { fadeIn() },
+        exitTransition = { fadeOut() },
         modifier = modifier
     ) {
         transactionsNavigation(navController = navController)

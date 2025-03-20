@@ -13,16 +13,19 @@ import kotlinx.coroutines.flow.flow
 internal class FakeTransactionRepository: TransactionsRepository {
     override fun getTransactions(filters: List<TransactionFilter>): Flow<List<Transaction>> =
         flow {
+            val date1 = TransactionDate(2023, 10, 1)
+            val date2 = TransactionDate.fromIso8601Date(value = "2024-07-31T12:00:00Z")
             emit(
                 buildList {
                     repeat(100) {
+                        val isOdd = it % 2 == 0
                         add(
                             Transaction(
                                 id = "id-$it",
                                 amount = CurrencyValue(stringValue = "$ 99,00"),
                                 description = "pertinacia $it",
                                 category = TransactionCategory(id = "ipsum", name = "Rigoberto Armstrong"),
-                                date = TransactionDate(value = "dui"),
+                                date = if (isOdd) date1 else date2,
                                 account = Account(id = "omittantur"),
                             ),
                         )

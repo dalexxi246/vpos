@@ -7,4 +7,5 @@ import kotlin.uuid.Uuid
 
 data class Account(
     val id: String = Uuid.random().toString(),
+    val name: String = "",
 )

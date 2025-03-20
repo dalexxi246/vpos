@@ -21,7 +21,7 @@ fun TransactionsListRoute(
 
     TransactionsListScreen(
         state = state,
-        modifier = modifier,
         addTransaction = addTransaction,
+        modifier = modifier,
     )
 }
