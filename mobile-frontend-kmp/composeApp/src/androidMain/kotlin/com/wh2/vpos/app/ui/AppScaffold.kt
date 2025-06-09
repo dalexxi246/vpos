@@ -9,12 +9,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.wh2.vpos.app.navigation.AppNavHost
-import com.wh2.vpos.app.navigation.bottombar.BottomNavigationBar
-import com.wh2.vpos.core.ui.theme.AppTheme
-import com.wh2.vpos.app.navigation.bottombar.BottomNavigationBarState
 import com.wh2.vpos.app.navigation.NavigationAppState
+import com.wh2.vpos.app.navigation.bottombar.BottomNavigationBar
+import com.wh2.vpos.app.navigation.bottombar.BottomNavigationBarState
 import com.wh2.vpos.app.navigation.bottombar.rememberBottomNavigationBarState
 import com.wh2.vpos.app.navigation.rememberNavigationAppState
+import com.wh2.vpos.app.navigation.topbar.TopNavigationBar
+import com.wh2.vpos.core.ui.theme.AppTheme
 
 @Composable
 internal fun AppScaffold(
@@ -30,6 +31,12 @@ internal fun AppScaffold(
     AppTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize().then(modifier),
+            topBar = {
+                TopNavigationBar(
+                    navigationAppState = navigationAppState,
+                    onNavigationButtonClicked = {}
+                )
+            },
             bottomBar = {
                 BottomNavigationBar(
                     bottomNavigationBarState = bottomNavigationBarState,

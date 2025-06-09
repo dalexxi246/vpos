@@ -7,6 +7,7 @@ package com.wh2.vpos.feature.transactions.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,26 +22,20 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.wh2.budgetapp.ui.theme.Typography
-import com.wh2.vpos.R
 import com.wh2.vpos.core.ui.designsystem.AppIcons
 import com.wh2.vpos.core.ui.designsystem.CreateIcon
 import com.wh2.vpos.core.ui.designsystem.ImageVectorIcon
@@ -61,7 +56,6 @@ fun TransactionsListScreen(
     modifier: Modifier = Modifier,
     onFilterSelected: (TransactionFilter) -> Unit = {},
     onTransactionSelected: (Transaction) -> Unit = {},
-    onNavigationButtonClicked: () -> Unit = {},
 ) {
     Scaffold(
         modifier = Modifier
@@ -75,38 +69,15 @@ fun TransactionsListScreen(
                 )
             }
         },
-        topBar = { ScreenAppBar(onNavigationButtonClicked = onNavigationButtonClicked) },
         content = {
             Column(modifier = Modifier.padding(it)) {
                 Filters(
                     filters = state.filters,
+                    onFilterSelected = onFilterSelected
                 )
                 TransactionsList(
                     state = state.sections,
-                )
-            }
-        },
-    )
-}
-
-@Composable
-private fun ScreenAppBar(onNavigationButtonClicked: () -> Unit = { }) {
-    CenterAlignedTopAppBar(
-        title = {
-            Text(
-                text = "Transacciones",
-                style = Typography.headlineSmall,
-                fontWeight = FontWeight.SemiBold,
-            )
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-        ),
-        navigationIcon = {
-            IconButton(onClick = onNavigationButtonClicked) {
-                Icon(
-                    imageVector = AppIcons.Filled.ToggleNavigationDrawer,
-                    contentDescription = stringResource(id = R.string.content_description_navigation_side_panel),
+                    onTransactionSelected = onTransactionSelected,
                 )
             }
         },
@@ -152,7 +123,8 @@ private fun Filters(
 @Composable
 fun TransactionsList(
     modifier: Modifier = Modifier,
-    state: List<TransactionsListSection>
+    state: List<TransactionsListSection>,
+    onTransactionSelected: (Transaction) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -165,13 +137,17 @@ fun TransactionsList(
                     modifier = Modifier
                         .background(MaterialTheme.colorScheme.background)
                         .padding(vertical = 8.dp)
+                        .padding(start = 8.dp)
                         .wrapContentHeight()
                         .fillMaxWidth(),
                     style = Typography.titleLarge,
                 )
             }
             items(sectionData.transactions) { transaction ->
-                Box(modifier = Modifier.padding(horizontal = 8.dp)) {
+                Box(modifier = Modifier
+                    .clickable { onTransactionSelected(transaction) }
+                    .padding(horizontal = 8.dp)
+                ) {
                     TransactionItem(transaction)
                 }
             }

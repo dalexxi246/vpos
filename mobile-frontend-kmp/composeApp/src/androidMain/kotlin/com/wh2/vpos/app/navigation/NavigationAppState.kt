@@ -39,17 +39,26 @@ class NavigationAppState(
             else -> null
         }
 
+    /*
+     * Returns title for the current destination.
+     */
+    val currentTopLevelDestinationTitle: String
+        @Composable get() = currentTopLevelDestination?.getTitle().orEmpty()
+
+    /**
+     * Returns the currently selected top level destination.
+     */
     @Composable
     fun SelectedDestinationIcon(destination: TopLevelDestination, colorTint: Color) {
         if (destination == currentTopLevelDestination) {
             destination.selectedIcon.CreateIcon(
                 contentDescription = context.getString(destination.iconTextId),
-                colorTint = colorTint
+                colorTint = colorTint,
             )
         } else {
             destination.unselectedIcon.CreateIcon(
                 contentDescription = context.getString(destination.iconTextId),
-                colorTint = colorTint
+                colorTint = colorTint,
             )
         }
     }
